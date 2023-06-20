@@ -62,7 +62,11 @@ axios.get(`${baseurl}/posts`)
     }
     axios.post(url, params)
     .then((response) => {
-      console.log(response.data)
+      localStorage.setItem("token", response.data.token)
+      localStorage.setItem("user", JSON.stringify(response.data.user))
+      
+      const modal = document.getElementById("login-modal")
+      const modalInstance = bootstrap.Modal.getInstance(modal)
+      modalInstance.hide()
     })
-    //console.log(username, password)
   }
