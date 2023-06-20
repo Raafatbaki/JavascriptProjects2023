@@ -11,8 +11,7 @@
   <link rel="stylesheet" href="style.css">
   <!-- AXIOS IMPORT -->
   <script src="./node_modules/axios/dist/axios.min.js"></script>
-  <!-- JAVA SCRIPT -->
-  <script src="script.js"></script>
+  
 </head>
 <body>
   <!-- MODALS -->
@@ -44,6 +43,8 @@
     </div>
   </div>
   <!-- // LOGIN MODAL // -->
+  <!-- <div id="liveAlertPlaceholder" style="height: 30px; width: 30%; background-color: red;"></div> -->
+
   <!-- // MODALS // -->
 
 
@@ -67,8 +68,8 @@
                 </li>
               </ul>
               <div class="d-flex justify-content-end w-100 ">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#login-modal" class="btn btn-outline-success mx-2">Login</button>
-                <button type="button" class="btn btn-outline-success">Register</button>
+                <button id="login-btn" type="button" data-bs-toggle="modal" data-bs-target="#login-modal" class="btn btn-outline-success mx-2">Login</button>
+                <button id="register-btn" type="button" class="btn btn-outline-success">Register</button>
               </div>
             </div>
           </div>
@@ -172,6 +173,8 @@
   </div>
   
   <!-- // MEIN-CONTENT // -->
+  <!-- JAVA SCRIPT -->
+  <script src="script.js"></script>
 </body>
 
 </html>

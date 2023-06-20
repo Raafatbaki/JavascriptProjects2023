@@ -1,4 +1,6 @@
+setupUI()
 const baseurl = "https://tarmeezacademy.com/api/v1"
+
 
 axios.get(`${baseurl}/posts`)
   .then(function (response) {
@@ -51,7 +53,7 @@ axios.get(`${baseurl}/posts`)
     // handle error
     console.log(error);
   })
-
+  
   function loginBtnClicked(){
     const username = document.getElementById("username-input").value
     const password = document.getElementById("password-input").value
@@ -70,3 +72,41 @@ axios.get(`${baseurl}/posts`)
       modalInstance.hide()
     })
   }
+  
+// function sucsses () {
+//   const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+// const appendAlert = (message, type) => {
+//   const wrapper = document.createElement('div')
+//   wrapper.innerHTML = [
+//     `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+//     `   <div>${message}</div>`,
+//     '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+//     '</div>'
+//   ].join('')
+
+//   alertPlaceholder.append(wrapper)
+// }
+
+// const alertTrigger = document.getElementById('liveAlertBtn')
+// if (alertTrigger) {
+//   alertTrigger.addEventListener('click', () => {
+//     appendAlert('Nice, you triggered this alert message!', 'success')
+//   })
+// }
+// }  
+// //sucsses()
+
+function setupUI() {
+  const token = localStorage.getItem("token")
+
+  const loginBtn = document.getElementById("login-btn")
+  const registerBtn = document.getElementById("register-btn")
+
+  if(token == null) {
+
+  }else {
+    loginBtn.style.visibility = "hidden"
+    registerBtn.style.visibility = "hidden"
+  }
+}
+
