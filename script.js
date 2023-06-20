@@ -73,6 +73,11 @@ axios.get(`${baseurl}/posts`)
     })
   }
   
+  function logout(){
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
+    alert("done")
+  }
 // function sucsses () {
 //   const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 // const appendAlert = (message, type) => {
