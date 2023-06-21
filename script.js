@@ -71,40 +71,71 @@ axios.get(`${baseurl}/posts`)
     console.log(error);
   })
   
-function loginBtnClicked(){
-    const username = document.getElementById("username-input").value
-    const password = document.getElementById("password-input").value
-    const url = `${baseurl}/login`
-    const params = {
-      "username" : username,
-      "password" : password
-    }
-    axios.post(url, params)
-    .then((response) => {
-      localStorage.setItem("token", response.data.token)
-      localStorage.setItem("user", JSON.stringify(response.data.user))
+function loginBtnClicked()
+{
+  const username = document.getElementById("username-input").value
+  const password = document.getElementById("password-input").value
+  const url = `${baseurl}/login`
+  const params = {
+    "username" : username,
+    "password" : password
+  }
+  axios.post(url, params)
+  .then((response) => {
+    localStorage.setItem("token", response.data.token)
+    localStorage.setItem("user", JSON.stringify(response.data.user))
       
-      const modal = document.getElementById("login-modal")
-      const modalInstance = bootstrap.Modal.getInstance(modal)
-      modalInstance.hide()
-      showSuccessAlert("Logged in successfully")
-      setupUI()
-    })
-    
+    const modal = document.getElementById("login-modal")
+    const modalInstance = bootstrap.Modal.getInstance(modal)
+    modalInstance.hide()
+    showAlert("Logged in successfully", "success")
+    setupUI()
+  })
 }
   
-function registerBtnClicked(){
-  console.log("www")
-}
+function registerBtnClicked()
+{
+  const name = document.getElementById("register-name-input").value
+  const username = document.getElementById("register-username-input").value
+  const password = document.getElementById("register-password-input").value
+  
+  //console.log(name, username, password)
+  
 
-function logout(){
-    localStorage.removeItem("token")
-    localStorage.removeItem("user")
-    showSuccessAlert("Logged out successfully")
+  const url = `${baseurl}/register`
+  const params = {
+    "username" : username,
+    "password" : password,
+    "name" : name
+  }
+  axios.post(url, params)
+  .then((response) => {
+    localStorage.setItem("token", response.data.token)
+    localStorage.setItem("user", JSON.stringify(response.data.user))
+    
+    const modal = document.getElementById("register-modal")
+    const modalInstance = bootstrap.Modal.getInstance(modal)
+    modalInstance.hide()
+
+    showAlert("New User Registered successfully", "success")
     setupUI()
+  }).catch((error) => {
+    const message = error.response.data.message
+    showAlert(message, "danger")
+    //console.log("The username has already been taken.")
+  })
 }
 
-function showSuccessAlert(customMessage) {
+function logout()
+{
+  localStorage.removeItem("token")
+  localStorage.removeItem("user")
+  showAlert("Logged out successfully", "success")
+  setupUI()
+}
+
+function showAlert(customMessage, type)
+{
   const alertPlaceholder = document.getElementById('success-alert')
   const appendAlert = (message, type) => {
   const wrapper = document.createElement('div')
@@ -117,7 +148,7 @@ function showSuccessAlert(customMessage) {
 
   alertPlaceholder.append(wrapper)
 }
-  appendAlert(customMessage, 'success')
+  appendAlert(customMessage, type)
 
   // TODO 
   // setTimeout(() => {
@@ -126,7 +157,8 @@ function showSuccessAlert(customMessage) {
   // }, 2000);
 }  
 
-function setupUI() {
+function setupUI() 
+{
   const token = localStorage.getItem("token")
 
   const loginDiv = document.getElementById("login-div")
