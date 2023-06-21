@@ -70,7 +70,7 @@ axios.get(`${baseurl}/posts`)
       const modal = document.getElementById("login-modal")
       const modalInstance = bootstrap.Modal.getInstance(modal)
       modalInstance.hide()
-      //alert("su")
+      showSuccessAlert("Logged in successfully")
       setupUI()
     })
     
@@ -79,31 +79,30 @@ axios.get(`${baseurl}/posts`)
   function logout(){
     localStorage.removeItem("token")
     localStorage.removeItem("user")
-    //alert("done")
+    showSuccessAlert("Logged out successfully")
     setupUI()
   }
-// function sucsses () {
-//   const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
-// const appendAlert = (message, type) => {
-//   const wrapper = document.createElement('div')
-//   wrapper.innerHTML = [
-//     `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-//     `   <div>${message}</div>`,
-//     '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-//     '</div>'
-//   ].join('')
+function showSuccessAlert(customMessage) {
+  const alertPlaceholder = document.getElementById('success-alert')
+  const appendAlert = (message, type) => {
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    '</div>'
+  ].join('')
 
-//   alertPlaceholder.append(wrapper)
-// }
+  alertPlaceholder.append(wrapper)
+}
+  appendAlert(customMessage, 'success')
 
-// const alertTrigger = document.getElementById('liveAlertBtn')
-// if (alertTrigger) {
-//   alertTrigger.addEventListener('click', () => {
-//     appendAlert('Nice, you triggered this alert message!', 'success')
-//   })
-// }
-// }  
-// //sucsses()
+  // TODO 
+  // setTimeout(() => {
+  //   const alertToHide = bootstrap.Alert.getOrCreateInstance('#success-alert')
+  //   alertToHide.close()
+  // }, 2000);
+}  
 
 function setupUI() {
   const token = localStorage.getItem("token")
