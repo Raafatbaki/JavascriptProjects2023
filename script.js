@@ -70,13 +70,17 @@ axios.get(`${baseurl}/posts`)
       const modal = document.getElementById("login-modal")
       const modalInstance = bootstrap.Modal.getInstance(modal)
       modalInstance.hide()
+      //alert("su")
+      setupUI()
     })
+    
   }
   
   function logout(){
     localStorage.removeItem("token")
     localStorage.removeItem("user")
-    alert("done")
+    //alert("done")
+    setupUI()
   }
 // function sucsses () {
 //   const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
@@ -104,14 +108,15 @@ axios.get(`${baseurl}/posts`)
 function setupUI() {
   const token = localStorage.getItem("token")
 
-  const loginBtn = document.getElementById("login-btn")
-  const registerBtn = document.getElementById("register-btn")
+  const loginDiv = document.getElementById("login-div")
+  const logoutDiv = document.getElementById("logout-div")
 
   if(token == null) {
-
+    loginDiv.style.setProperty("display", "flex", "important")
+    logoutDiv.style.setProperty("display", "none", "important")
   }else {
-    loginBtn.style.visibility = "hidden"
-    registerBtn.style.visibility = "hidden"
+    loginDiv.style.setProperty("display", "none", "important")
+    logoutDiv.style.setProperty("display", "flex", "important")
   }
 }
 

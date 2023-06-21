@@ -27,11 +27,11 @@
           <form>
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Username:</label>
-              <input type="text" class="form-control" id="username-input">
+              <input type="text" class="form-control" id="username-input" value="mmm93">
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Password:</label>
-              <input type="password" class="form-control" id="password-input">
+              <input type="password" class="form-control" id="password-input" value="123456">
             </div>
           </form>
         </div>
@@ -68,13 +68,13 @@
                 </li>
               </ul>
               <!-- NON-LOGGED IN USER -->
-              <div class="d-flex justify-content-end w-100 ">
+              <div class="d-flex justify-content-end w-100" id="login-div">
                 <button id="login-btn" type="button" data-bs-toggle="modal" data-bs-target="#login-modal" class="btn btn-outline-success mx-2">Login</button>
                 <button id="register-btn" type="button" class="btn btn-outline-success">Register</button>
               </div>
               <!-- // NON-LOGGED IN USER // -->
               <!-- FOR LOGGED IN USER -->
-              <div class="d-flex justify-content-end w-100 ">
+              <div class="d-flex justify-content-end w-100" id="logout-div">
                 <button onclick="logout()" id="logout-btn" type="button" data-bs-toggle="modal" class="btn btn-outline-danger mx-2">logout</button>
               </div>
               <!-- // FOR LOGGED IN USER // -->
