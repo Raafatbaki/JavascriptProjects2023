@@ -10,7 +10,6 @@ axios.get(`${baseurl}/posts`)
 
     for(post of posts){
       //console.log(post.tags);
-      
       const author = post.author
       const postTitel = ""
       if(post.titel != null){
@@ -40,14 +39,32 @@ axios.get(`${baseurl}/posts`)
             </svg>
             <span>
               (${post.comments_count}) Comment
+              <span id="post-tags-${post.id}">
+
+              </span>
             </span>
           </div>
         </div>
       </div>`
 
-    document.getElementById("posts").innerHTML += content
+      document.getElementById("posts").innerHTML += content
+
+      const currentPostTagsId = `post-tags-${post.id}`
+      document.getElementById(currentPostTagsId).innerHTML = ""
+
+      for(tag of post.tags)
+      {
+        //console.log(tag.name)
+        let tagsContent = 
+        ` <button class="btn btn-sm rounded" style="background-color: gray; color: white;">
+            ${tag.name}
+          </button>
+        `
+        document.getElementById(currentPostTagsId).innerHTML += tagsContent
+      }
+      //console.log(post.tags)
+      
     }
-    
   })
   .catch(function (error) {
     // handle error
