@@ -71,7 +71,7 @@ axios.get(`${baseurl}/posts`)
     console.log(error);
   })
   
-  function loginBtnClicked(){
+function loginBtnClicked(){
     const username = document.getElementById("username-input").value
     const password = document.getElementById("password-input").value
     const url = `${baseurl}/login`
@@ -91,14 +91,19 @@ axios.get(`${baseurl}/posts`)
       setupUI()
     })
     
-  }
+}
   
-  function logout(){
+function registerBtnClicked(){
+  console.log("www")
+}
+
+function logout(){
     localStorage.removeItem("token")
     localStorage.removeItem("user")
     showSuccessAlert("Logged out successfully")
     setupUI()
-  }
+}
+
 function showSuccessAlert(customMessage) {
   const alertPlaceholder = document.getElementById('success-alert')
   const appendAlert = (message, type) => {
