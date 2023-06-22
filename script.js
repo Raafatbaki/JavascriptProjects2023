@@ -11,7 +11,7 @@ axios.get(`${baseurl}/posts`)
     for(post of posts){
       //console.log(post.tags);
       const author = post.author
-      const postTitel = ""
+      let postTitel = ""
       if(post.titel != null){
         postTitel = post.titel
       }
@@ -179,5 +179,15 @@ function setupUI()
 
 function createNewPostClicked()
 {
-  alert("done")
+  const titel = document.getElementById("post-titel-input").value
+  const body = document.getElementById("post-body-input").value
+  const url = `${baseurl}/posts`
+  const params = {
+    "titel" : titel,
+    "body" : body
+  }
+  axios.post(url, params)
+  .then((response) => {
+    console.log(response)
+  })
 }
