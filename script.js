@@ -163,13 +163,21 @@ function setupUI()
 
   const loginDiv = document.getElementById("login-div")
   const logoutDiv = document.getElementById("logout-div")
+  // add btn
+  const addBtn = document.getElementById("add-btn")
 
   if(token == null) {
+    addBtn.style.setProperty("display", "none", "important")
     loginDiv.style.setProperty("display", "flex", "important")
     logoutDiv.style.setProperty("display", "none", "important")
   }else {
+    addBtn.style.setProperty("display", "block", "important")
     loginDiv.style.setProperty("display", "none", "important")
     logoutDiv.style.setProperty("display", "flex", "important")
   }
 }
 
+function createNewPostClicked()
+{
+  alert("done")
+}

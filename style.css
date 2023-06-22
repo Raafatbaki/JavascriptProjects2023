@@ -4,3 +4,23 @@ body {
 .card {
   margin-top: 30px;
 }
+#add-btn {
+  width: 70px;
+  height: 70px;
+  position: fixed;
+  color: white;
+  bottom: 5%;
+  right: 7%;
+  font-size: 50px;
+  box-shadow: 0px 10px 10px rgb(0, 0, 0, 0.3);
+  cursor: pointer;
+  border-radius: 100px;
+  text-align: center;
+}
+#post-body-input {
+  width: 100%;
+  height: 100px;
+  border-color: gray;
+  border-radius: 10px;
+  resize: none;
+}
