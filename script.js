@@ -1,8 +1,10 @@
 setupUI()
 const baseurl = "https://tarmeezacademy.com/api/v1"
+getPost()
 
-
-axios.get(`${baseurl}/posts`)
+function getPost()
+{
+  axios.get(`${baseurl}/posts`)
   .then(function (response) {
     // handle success
     const posts = response.data.data
@@ -70,6 +72,8 @@ axios.get(`${baseurl}/posts`)
     // handle error
     console.log(error);
   })
+}
+
   
 function loginBtnClicked()
 {
@@ -122,7 +126,6 @@ function registerBtnClicked()
   }).catch((error) => {
     const message = error.response.data.message
     showAlert(message, "danger")
-    //console.log("The username has already been taken.")
   })
 }
 
@@ -181,13 +184,29 @@ function createNewPostClicked()
 {
   const titel = document.getElementById("post-titel-input").value
   const body = document.getElementById("post-body-input").value
+  const image = document.getElementById("post-image-input").files[0]
   const url = `${baseurl}/posts`
-  const params = {
-    "titel" : titel,
-    "body" : body
+  let formData = new FormData
+  formData.append("body", body)
+  formData.append("titel", titel)
+  formData.append("image", image)
+
+  const token = localStorage.getItem("token")
+  const headers = {
+    "authorization" : `Bearer ${token}`
   }
-  axios.post(url, params)
+  axios.post(url, formData, {
+    headers : headers
+  })
   .then((response) => {
-    console.log(response)
+    const modal = document.getElementById("create-post-modal")
+    const modalInstance = bootstrap.Modal.getInstance(modal)
+    modalInstance.hide()
+    showAlert("New Post Has Been Created", "success")
+    getPost()
+  })
+  .catch((error) => {
+    const message = error.response.data.message
+    showAlert(message, "danger")
   })
 }
