@@ -177,6 +177,8 @@ function setupUI()
     addBtn.style.setProperty("display", "block", "important")
     loginDiv.style.setProperty("display", "none", "important")
     logoutDiv.style.setProperty("display", "flex", "important")
+    const user = getCurrentUser()
+    document.getElementById("nav-username").innerHTML = user.username
   }
 }
 
@@ -209,4 +211,16 @@ function createNewPostClicked()
     const message = error.response.data.message
     showAlert(message, "danger")
   })
+}
+
+function getCurrentUser()
+{
+  let user = null
+  const storageUser = localStorage.getItem("user")
+
+  if(storageUser != null)
+  {
+    user = JSON.parse(storageUser)
+  }
+  return user
 }
