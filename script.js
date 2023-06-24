@@ -2,13 +2,36 @@ setupUI()
 const baseurl = "https://tarmeezacademy.com/api/v1"
 getPost()
 
-function getPost()
+// INFINITE SCROLL //
+let currentPage = 1
+let lastPage = 1 
+
+window.addEventListener("scroll", function(){
+
+  const endOfPage = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
+  if(endOfPage && currentPage < lastPage)
+  {
+    currentPage = currentPage + 1
+    getPost(false, currentPage)
+  }
+});
+
+
+
+// // INFINITE SCROLL // //
+
+
+function getPost(relode = true, page = 1)
 {
-  axios.get(`${baseurl}/posts`)
+  axios.get(`${baseurl}/posts?limit=4&page=${page}`)
   .then(function (response) {
     // handle success
     const posts = response.data.data
-    document.getElementById("posts").innerHTML = ""
+    lastPage = response.data.meta.last_page
+    if(relode)
+    {
+      document.getElementById("posts").innerHTML = ""
+    }
 
     for(post of posts){
       //console.log(post.tags);
