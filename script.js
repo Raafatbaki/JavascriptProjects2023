@@ -45,7 +45,7 @@ function getPost(relode = true, page = 1)
           <img class="rounded-circle border border-2" src="${author.profile_image}" alt="" style="width: 40px; height: 40px;">
           <b>${author.username}</b>
         </div>
-        <div class="card-body">
+        <div class="card-body" onclick="postClicked()" style="cursor : pointer">
           <img class="w-100" src="${post.image}" alt="">
           <h6 style="color: rgb(193, 193, 193);" class="mt-1">
             ${post.created_at}
@@ -246,4 +246,9 @@ function getCurrentUser()
     user = JSON.parse(storageUser)
   }
   return user
+}
+
+function postClicked()
+{
+  window.location =`postDetails.html`
 }
