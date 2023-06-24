@@ -111,13 +111,6 @@ function registerBtnClicked()
   formData.append("password", password)
   formData.append("image", image)
 
-  const token = localStorage.getItem("token")
-  // const headers = {
-  //   "authorization" : `Bearer ${token}`
-  // }
-  // axios.post(url, formData, {
-  //   headers : headers
-  // })
   const url = `${baseurl}/register`
 
   axios.post(url, formData)
@@ -177,7 +170,7 @@ function setupUI()
   const logoutDiv = document.getElementById("logout-div")
   // add btn
   const addBtn = document.getElementById("add-btn")
-
+  
   if(token == null) {
     addBtn.style.setProperty("display", "none", "important")
     loginDiv.style.setProperty("display", "flex", "important")
@@ -188,6 +181,7 @@ function setupUI()
     logoutDiv.style.setProperty("display", "flex", "important")
     const user = getCurrentUser()
     document.getElementById("nav-username").innerHTML = user.username
+    document.getElementById("nav-profile-pic").src = user.profile_image
   }
 }
 
