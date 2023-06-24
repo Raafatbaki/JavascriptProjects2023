@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <!-- IMPORT BOOTSTRAP -->
-  <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
-  <!-- AXIOS IMPORT -->
-  <script src="./node_modules/axios/dist/axios.min.js"></script>
-  
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- IMPORT BOOTSTRAP -->
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- AXIOS IMPORT -->
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    
+  </head>
 <body>
   <!-- MODALS -->
   <!-- LOGIN MODAL -->
@@ -114,15 +114,15 @@
 
   <!-- // MODALS // -->
 
+  <!-- ALERT -->
+  <div id="success-alert" class="show fade" style="position: fixed; bottom: 0; right: 0; z-index: 9999;"></div>
+  <!-- // ALERT // -->
+
   <!-- ADD POST BUTTON -->
   <div id="add-btn" class="bg-primary" data-bs-toggle="modal" data-bs-target="#create-post-modal">
     +
   </div>
   <!-- // ADD POST BUTTON // -->
-
-  <!-- ALERT -->
-  <div id="success-alert" class="show fade" style="position: fixed; bottom: 0; right: 0; z-index: 9999;"></div>
-  <!-- // ALERT // -->
 
   <!-- NAVIGATION BAR CONT -->
   <div class="container">
@@ -170,101 +170,51 @@
   <div class="container" style="height: 1000px;">
     <div class="d-flex justify-content-center mt-5">
       <div class="col-9">
-        <!-- POSTS -->
-        <div id="posts">
-          <!-- POST -->
-          <div class="card shadow">
-            <div class="card-header">
-              <img class="rounded-circle border border-2" src="profile-pic/pngwing.com.png" alt="" style="width: 40px; height: 40px;">
-              <b>@Raafat</b>
-            </div>
-            <div class="card-body">
-              <img class="w-100" src="placeholders/image.jpg" alt="">
-              <h6 style="color: rgb(193, 193, 193);" class="mt-1">
-                2 min ago
-              </h6>
-              <h5>
-                Hallo Word
-              </h5>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae fugit consequuntur aut odit ducimus repudiandae accusamus illo aliquid! Ea necessitatibus, enim consectetur voluptate ut expedita dolorum tenetur. Consequatur, voluptas dicta.</p>
-              <hr>
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                  <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-                </svg>
+        <!-- USER'S POST -->
+        <h1>
+          <span>
+            Raafat's
+          </span>
+          post
+        </h1>
+        <!-- // USER'S POST // -->
+        <!-- POST ROW -->
+        <div class="card shadow">
+          <div class="card-header">
+            <img class="rounded-circle border border-2" src="profile-pic/pngwing.com.png" alt="" style="width: 40px; height: 40px;">
+            <b>@Raafat</b>
+          </div>
+          <div class="card-body">
+            <img class="w-100" src="placeholders/image.jpg" alt="">
+            <h6 style="color: rgb(193, 193, 193);" class="mt-1">
+              2 min ago
+            </h6>
+            <h5>
+              Hallo Word
+            </h5>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae fugit consequuntur aut odit ducimus repudiandae accusamus illo aliquid! Ea necessitatibus, enim consectetur voluptate ut expedita dolorum tenetur. Consequatur, voluptas dicta.</p>
+            <hr>
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+              </svg>
+              <span>
+                (3) Comments
                 <span>
-                  (3) Comments
-                  <span>
-                    <button class="btn btn-sm rounded" style="background-color: gray; color: white;"></button>
-                  </span>
+                  <button class="btn btn-sm rounded" style="background-color: gray; color: white;"></button>
                 </span>
-              </div>
+              </span>
             </div>
           </div>
-          <!-- // POST // -->
-          <!-- POST -->
-          <div class="card shadow">
-            <div class="card-header">
-              <img class="rounded-circle border border-2" src="profile-pic/pngwing.com.png" alt="" style="width: 40px; height: 40px;">
-              <b>@Raafat</b>
-            </div>
-            <div class="card-body">
-              <img class="w-100" src="placeholders/image.jpg" alt="">
-              <h6 style="color: rgb(193, 193, 193);" class="mt-1">
-                2 min ago
-              </h6>
-              <h5>
-                Hallo Word
-              </h5>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae fugit consequuntur aut odit ducimus repudiandae accusamus illo aliquid! Ea necessitatibus, enim consectetur voluptate ut expedita dolorum tenetur. Consequatur, voluptas dicta.</p>
-              <hr>
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                  <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-                </svg>
-                <span>
-                  (3) Comments
-                </span>
-              </div>
-            </div>
-          </div>
-          <!-- // POST // -->
-          <!-- POST -->
-          <div class="card shadow">
-            <div class="card-header">
-              <img class="rounded-circle border border-2" src="profile-pic/pngwing.com.png" alt="" style="width: 40px; height: 40px;">
-              <b>@Raafat</b>
-            </div>
-            <div class="card-body">
-              <img class="w-100" src="placeholders/image.jpg" alt="">
-              <h6 style="color: rgb(193, 193, 193);" class="mt-1">
-                2 min ago
-              </h6>
-              <h5>
-                Hallo Word
-              </h5>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae fugit consequuntur aut odit ducimus repudiandae accusamus illo aliquid! Ea necessitatibus, enim consectetur voluptate ut expedita dolorum tenetur. Consequatur, voluptas dicta.</p>
-              <hr>
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                  <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-                </svg>
-                <span>
-                  (3) Comments
-                </span>
-              </div>
-            </div>
-          </div>
-          <!-- // POST // -->
         </div>
-        <!-- // POSTS // -->
+        <!-- // POST ROW // -->
+        <!-- // USER'S POST // -->
       </div>
     </div>
   </div>
   <!-- // MEIN-CONTENT // -->
-  
+
   <!-- JAVA SCRIPT -->
   <script src="script.js"></script>
 </body>
-
 </html>

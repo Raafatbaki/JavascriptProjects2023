@@ -2,7 +2,7 @@ setupUI()
 const baseurl = "https://tarmeezacademy.com/api/v1"
 getPost()
 
-// INFINITE SCROLL //
+// ====INFINITE SCROLL==== //
 let currentPage = 1
 let lastPage = 1 
 
@@ -15,10 +15,7 @@ window.addEventListener("scroll", function(){
     getPost(false, currentPage)
   }
 });
-
-
-
-// // INFINITE SCROLL // //
+// ====// INFINITE SCROLL //==== //
 
 
 function getPost(relode = true, page = 1)
