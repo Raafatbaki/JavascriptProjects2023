@@ -102,18 +102,27 @@ function registerBtnClicked()
   const name = document.getElementById("register-name-input").value
   const username = document.getElementById("register-username-input").value
   const password = document.getElementById("register-password-input").value
-  
-  //console.log(name, username, password)
-  
+  const image = document.getElementById("register-image-input").files[0]
 
+  //console.log(name, username, password)
+  let formData = new FormData
+  formData.append("name", name)
+  formData.append("username", username)
+  formData.append("password", password)
+  formData.append("image", image)
+
+  const token = localStorage.getItem("token")
+  // const headers = {
+  //   "authorization" : `Bearer ${token}`
+  // }
+  // axios.post(url, formData, {
+  //   headers : headers
+  // })
   const url = `${baseurl}/register`
-  const params = {
-    "username" : username,
-    "password" : password,
-    "name" : name
-  }
-  axios.post(url, params)
+
+  axios.post(url, formData)
   .then((response) => {
+    console.log(response.data)
     localStorage.setItem("token", response.data.token)
     localStorage.setItem("user", JSON.stringify(response.data.user))
     
