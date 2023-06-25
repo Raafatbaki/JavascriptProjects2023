@@ -1,5 +1,10 @@
-setupUI()
+
+
 const baseurl = "https://tarmeezacademy.com/api/v1"
+const urlParams = new URLSearchParams(window.location.search)
+const id = urlParams.get("postId")
+console.log(id)
+setupUI()
 getPost()
 
 // ====INFINITE SCROLL==== //
@@ -248,28 +253,109 @@ function getCurrentUser()
   return user
 }
 
+
 function postClicked(postId)
 {
   window.location =`postDetails.html?postId=${postId}`
 }
 
-const urlParams = new URLSearchParams(window.location.search)
-const id = urlParams.get("postId")
 
+
+getDetailsPost()
 function getDetailsPost()
 {
   axios.get(`${baseurl}/posts/${id}`)
-  .then(function (response) {
+  .then((response) => {
     console.log(response.data)
     const post = response.data.data
     const comments = post.comments
     const author = post.author
-    document.getElementById("username-span").innerHTML = author.username
-    
+    // document.getElementById("username-span").innerHTML = author.username
+    // const postContent = 
+    // `
+    //   <div class="card shadow">
+    //     <div class="card-header">
+    //       <img class="rounded-circle border border-2" src="${author.profile_image}" alt="" style="width: 40px; height: 40px;">
+    //       <b>@${author.username}</b>
+    //     </div>
+    //     <div class="card-body">
+    //       <img class="w-100" src="${post.image}" alt="">
+    //       <h6 style="color: rgb(193, 193, 193);" class="mt-1">
+    //         ${post.created_at}
+    //       </h6>
+    //       <h5>
+    //         ${post.body}
+    //       </h5>
+    //       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae fugit consequuntur aut odit ducimus repudiandae accusamus illo aliquid! Ea necessitatibus, enim consectetur voluptate ut expedita dolorum tenetur. Consequatur, voluptas dicta.</p>
+    //       <hr>
+    //       <div>
+    //         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+    //           <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+    //         </svg>
+    //         <span>
+    //           (3) Comments
+    //           <span>
+    //             <button class="btn btn-sm rounded" style="background-color: gray; color: white;"></button>
+    //           </span>
+    //         </span>
+    //       </div>
+    //     </div>
+    //   </div>
+    // `
+    const postContent =
+    `
+      <div class="col-9"  id="post-details">
+          <!-- USER'S POST -->
+          <h1>
+            <span id="username-span">
+              ${author.username}
+            </span>
+            post
+          </h1>
+          <!-- // USER'S POST // -->
+          <!-- POST ROW -->
+          <div class="card shadow">
+            <div class="card-header">
+              <img class="rounded-circle border border-2" src="${author.profile_image}" alt="" style="width: 40px; height: 40px;">
+              <b>@${author.username}</b>
+            </div>
+            <div class="card-body">
+              <img class="w-100" src="${post.image}" alt="">
+              <h6 style="color: rgb(193, 193, 193);" class="mt-1">
+              ${post.created_at}
+              </h6>
+              <h5>
+              ${post.body}
+              </h5>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae fugit consequuntur aut odit ducimus repudiandae accusamus illo aliquid! Ea necessitatibus, enim consectetur voluptate ut expedita dolorum tenetur. Consequatur, voluptas dicta.</p>
+              <hr>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                  <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                </svg>
+                <span>
+                  (3) Comments
+                  <span>
+                    <button class="btn btn-sm rounded" style="background-color: gray; color: white;"></button>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <!-- // POST ROW // -->
+          <!-- // USER'S POST // -->
+        </div>
+      `
+    document.getElementById("post-details").innerHTML = postContent
+
+
   })
   .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
+  // handle error
+  console.log(error);
+})
+
 }
-getDetailsPost()
+
+
+    
