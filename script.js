@@ -45,7 +45,7 @@ function getPost(relode = true, page = 1)
           <img class="rounded-circle border border-2" src="${author.profile_image}" alt="" style="width: 40px; height: 40px;">
           <b>${author.username}</b>
         </div>
-        <div class="card-body" onclick="postClicked()" style="cursor : pointer">
+        <div class="card-body" onclick="postClicked(${post.id})" style="cursor : pointer">
           <img class="w-100" src="${post.image}" alt="">
           <h6 style="color: rgb(193, 193, 193);" class="mt-1">
             ${post.created_at}
@@ -248,7 +248,28 @@ function getCurrentUser()
   return user
 }
 
-function postClicked()
+function postClicked(postId)
 {
-  window.location =`postDetails.html`
+  window.location =`postDetails.html?postId=${postId}`
 }
+
+const urlParams = new URLSearchParams(window.location.search)
+const id = urlParams.get("postId")
+
+function getDetailsPost()
+{
+  axios.get(`${baseurl}/posts/${id}`)
+  .then(function (response) {
+    console.log(response.data)
+    const post = response.data.data
+    const comments = post.comments
+    const author = post.author
+    document.getElementById("username-span").innerHTML = author.username
+    
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+}
+getDetailsPost()
