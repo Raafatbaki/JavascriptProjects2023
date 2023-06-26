@@ -4,18 +4,18 @@ setupUI()
 getPost()
 
 // ====INFINITE SCROLL==== //
-// let currentPage = 1
-// let lastPage = 1 
+let currentPage = 1
+let lastPage = 1 
 
-// window.addEventListener("scroll", function(){
+window.addEventListener("scroll", function(){
 
-//   const endOfPage = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
-//   if(endOfPage && currentPage < lastPage)
-//   {
-//     currentPage = currentPage + 1
-//     getPost(false, currentPage)
-//   }
-// });
+  const endOfPage = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
+  if(endOfPage && currentPage < lastPage)
+  {
+    currentPage = currentPage + 1
+    getPost(false, currentPage)
+  }
+});
 // ====// INFINITE SCROLL //==== //
 
 
@@ -281,13 +281,13 @@ function getDetailsPost()
         <div class="p-3" style="background-color: rgb(235, 235, 235);">
           <!-- PROFILE PIC + USERNAME -->
           <div>
-            <img src="profile-pic/pngwing.com.png" class="rounded-circle" alt="" style="width: 40px; height: 40px;">
+            <img src="${comment.author.profile_image}" class="rounded-circle" alt="" style="width: 40px; height: 40px;">
             <b>${comment.author.username}</b>
           </div>
           <!-- // PROFILE PIC + USERNAME // -->
           <!-- COMMENT'S BODY -->
           <div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque molestiae dolore iste accusantium tempora eligendi. Voluptatem, velit reiciendis quo, neque commodi itaque minima unde nisi, aliquid officia error repudiandae consequuntur?
+            ${comment.body}
           </div>
           <!-- // COMMENT'S BODY // -->
         </div>
