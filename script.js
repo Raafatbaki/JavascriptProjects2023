@@ -38,14 +38,25 @@ function getPost(relode = true, page = 1)
       if(post.titel != null){
         postTitel = post.titel
       }
-      
+
+      // SHOW OR HIDE EDIT BTNTON
+      let user = getCurrentUser()
+      let isMyPost = user != null && post.author.id == user.id
+      let editBtnContent = ``
+      if(isMyPost)
+      {
+        editBtnContent = 
+        `
+          ​<button class='btn btn-secondary' style='float: right' onclick="editPostBtnClicked('${encodeURIComponent(JSON.stringify(post))}')">edit</button>
+        `
+      }
 
       let content = `
       <div class="card shadow">
         <div class="card-header">
           <img class="rounded-circle border border-2" src="${author.profile_image}" alt="" style="width: 40px; height: 40px;">
           <b>${author.username}</b>
-          ​<button class='btn btn-secondary' style='float: right' onclick="editPostBtnClicked('${encodeURIComponent(JSON.stringify(post))}')">edit</button>
+          ${editBtnContent}
         </div>
         <div class="card-body" onclick="postClicked(${post.id})" style="cursor : pointer">
           <img class="w-100" src="${post.image}" alt="">
@@ -229,8 +240,10 @@ function createNewPostClicked()
   if(isCreate)
   {
     url = `${baseurl}/posts`
+
   }else
   {
+    formData.append("_method", "put")
     url = `${baseurl}/posts/${postId}`
   }
   axios.post(url, formData, {
@@ -408,9 +421,25 @@ function editPostBtnClicked(postObjekt)
   if(post.titel != null){
     postTitel = post.titel
   }
+  document.getElementById("post-modal-submit-btn").innerHTML = "Update"
   document.getElementById("post-titel-input").value = postTitel
   document.getElementById("post-body-input").value = post.body
   document.getElementById("post-modal-titel").innerHTML = "Edit Post"
+  let postModal = new bootstrap.Modal(document.getElementById("create-post-modal"), {})
+  postModal.toggle()
+}
+
+function addBtnClicked()
+{
+  document.getElementById("post-id-input").value = ""
+  let postTitel = ""
+  if(post.titel != null){
+    postTitel = post.titel
+  }
+  document.getElementById("post-modal-submit-btn").innerHTML = "Create"
+  document.getElementById("post-titel-input").value = ""
+  document.getElementById("post-body-input").value = ""
+  document.getElementById("post-modal-titel").innerHTML = "Create A New Post"
   let postModal = new bootstrap.Modal(document.getElementById("create-post-modal"), {})
   postModal.toggle()
 }

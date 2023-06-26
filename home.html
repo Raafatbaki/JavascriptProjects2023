@@ -91,7 +91,7 @@
           <form>
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Titel:</label>
-              <input type="text" class="form-control" id="post-titel-input" value="">
+              <input type="text" class="form-control" id="post-titel-input">
               <input type="hidden" id="post-id-input" value="">
             </div>
             <div class="mb-3">
@@ -106,7 +106,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="createNewPostClicked()">Create</button>
+          <button id="post-modal-submit-btn" type="button" class="btn btn-primary" onclick="createNewPostClicked()">Create</button>
         </div>
       </div>
     </div>
@@ -116,7 +116,7 @@
   <!-- // MODALS // -->
 
   <!-- ADD POST BUTTON -->
-  <div id="add-btn" class="bg-primary" data-bs-toggle="modal" data-bs-target="#create-post-modal">
+  <div id="add-btn" class="bg-primary" onclick="addBtnClicked()">
     +
   </div>
   <!-- // ADD POST BUTTON // -->
