@@ -1,5 +1,4 @@
 const baseurl = "https://tarmeezacademy.com/api/v1"
-
 setupUI()
 getPost()
 
@@ -107,7 +106,6 @@ function getPost(relode = true, page = 1)
   })
 }
 
-  
 function loginBtnClicked()
 {
   const username = document.getElementById("username-input").value
@@ -279,9 +277,7 @@ function postClicked(postId)
   window.location =`postDetails.html?postId=${postId}`
 }
 const urlParams = new URLSearchParams(window.location.search)
-//console.log(urlParams)
 const id = urlParams.get("postId")
-//console.log(id)
 
 getDetailsPost()
 function getDetailsPost()
