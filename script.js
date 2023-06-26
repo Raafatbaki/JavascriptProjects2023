@@ -339,6 +339,12 @@ function getDetailsPost()
             <div id="comments">
               ${commentsContent}
             </div>
+            <!-- ADD COMMENT -->
+            <div class="input-group mb-3" id="add-comment-div">
+              <input type="text" id="comment-input" placeholder="add your comment here.." class="form-control">
+              <button class="btn btn-outline-primary" type="button" onclick="createCommentClicked()">send</button>
+            </div>
+            <!-- // ADD COMMENT // -->
           </div>
           <!-- // POST ROW // -->
           <!-- // USER'S POST // -->
@@ -354,7 +360,28 @@ function getDetailsPost()
   // handle error
   console.log(error);
 })
-
 }
 
+function createCommentClicked() 
+{
+  let commentBody = document.getElementById("comment-input").value
+  let params = {
+    "body": commentBody
+  }
+  let token = localStorage.getItem("token")
+  let url = `${baseurl}/posts/${id}/comments`
 
+  axios.post(url, params, {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  })
+  .then((response) => {
+    showAlert("The Comment has been created successfully", "success")
+    getDetailsPost()
+  })
+  .catch((error) => {
+    const erroMessage = error.response.data.message
+    showAlert(erroMessage, "danger")
+  })
+}
