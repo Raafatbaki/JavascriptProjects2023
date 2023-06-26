@@ -84,7 +84,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Create A New post</h1>
+          <h1 class="modal-title fs-5" id="post-modal-titel">Create A New post</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -92,6 +92,7 @@
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Titel:</label>
               <input type="text" class="form-control" id="post-titel-input" value="">
+              <input type="hidden" id="post-id-input" value="">
             </div>
             <div class="mb-3">
               <textarea name="" id="post-body-input">
@@ -177,6 +178,7 @@
             <div class="card-header">
               <img class="rounded-circle border border-2" src="profile-pic/pngwing.com.png" alt="" style="width: 40px; height: 40px;">
               <b>@Raafat</b>
+              <button class="btn btn-secondary" style="float: right;">edit</button>
             </div>
             <div class="card-body">
               <img class="w-100" src="placeholders/image.jpg" alt="">

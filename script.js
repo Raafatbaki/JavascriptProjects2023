@@ -45,6 +45,7 @@ function getPost(relode = true, page = 1)
         <div class="card-header">
           <img class="rounded-circle border border-2" src="${author.profile_image}" alt="" style="width: 40px; height: 40px;">
           <b>${author.username}</b>
+          ​<button class='btn btn-secondary' style='float: right' onclick="editPostBtnClicked('${encodeURIComponent(JSON.stringify(post))}')">edit</button>
         </div>
         <div class="card-body" onclick="postClicked(${post.id})" style="cursor : pointer">
           <img class="w-100" src="${post.image}" alt="">
@@ -208,18 +209,29 @@ function setupUI()
 
 function createNewPostClicked()
 {
+  let postId = document.getElementById("post-id-input").value
+  let isCreate = postId == null || postId == ""
+
   const titel = document.getElementById("post-titel-input").value
   const body = document.getElementById("post-body-input").value
   const image = document.getElementById("post-image-input").files[0]
-  const url = `${baseurl}/posts`
+  const token = localStorage.getItem("token")
+
   let formData = new FormData
   formData.append("body", body)
   formData.append("titel", titel)
   formData.append("image", image)
-
-  const token = localStorage.getItem("token")
+  
+  let url = ``
   const headers = {
     "authorization" : `Bearer ${token}`
+  }
+  if(isCreate)
+  {
+    url = `${baseurl}/posts`
+  }else
+  {
+    url = `${baseurl}/posts/${postId}`
   }
   axios.post(url, formData, {
     headers : headers
@@ -384,4 +396,21 @@ function createCommentClicked()
     const erroMessage = error.response.data.message
     showAlert(erroMessage, "danger")
   })
+}
+
+function editPostBtnClicked(postObjekt)
+{
+
+  let post = JSON.parse(decodeURIComponent(postObjekt))
+  console.log(post)
+  document.getElementById("post-id-input").value = post.id
+  let postTitel = ""
+  if(post.titel != null){
+    postTitel = post.titel
+  }
+  document.getElementById("post-titel-input").value = postTitel
+  document.getElementById("post-body-input").value = post.body
+  document.getElementById("post-modal-titel").innerHTML = "Edit Post"
+  let postModal = new bootstrap.Modal(document.getElementById("create-post-modal"), {})
+  postModal.toggle()
 }
