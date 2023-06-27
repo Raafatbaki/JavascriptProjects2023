@@ -285,7 +285,7 @@ function getDetailsPost()
 {
   axios.get(`${baseurl}/posts/${id}`)
   .then((response) => {
-    console.log(response.data)
+    //console.log(response.data)
     const post = response.data.data
     const comments = post.comments
     const author = post.author
@@ -403,8 +403,8 @@ function createCommentClicked()
     getDetailsPost()
   })
   .catch((error) => {
-    const erroMessage = error.response.data.message
-    showAlert(erroMessage, "danger")
+    const errorMessage = error.response.data.message
+    showAlert(errorMessage, "danger")
   })
 }
 
@@ -453,17 +453,23 @@ function deletePostBtnClicked(postObjekt)
 function confirmPostDelete()
 {
   const postId = document.getElementById("delete-post-id-input").value
-  alert(postId)
-  return
-  axios.post(url, params)
+  const url = `${baseurl}/posts/${postId}`
+  let token = localStorage.getItem("token")
+
+  axios.delete(url, {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  })
   .then((response) => {
-    localStorage.setItem("token", response.data.token)
-    localStorage.setItem("user", JSON.stringify(response.data.user))
-      
-    const modal = document.getElementById("login-modal")
+    const modal = document.getElementById("delete-post-modal")
     const modalInstance = bootstrap.Modal.getInstance(modal)
     modalInstance.hide()
-    showAlert("Logged in successfully", "success")
-    setupUI()
+    showAlert("The Post Has Been Deleted Successfully", "success")
+    getPost()
+  })
+  .catch((error) => {
+    const errorMessage = error.response.data.message
+    showAlert(errorMessage, "danger")
   })
 }

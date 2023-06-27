@@ -24,3 +24,15 @@ body {
   border-radius: 10px;
   resize: none;
 }
+.user-main-info {
+  font-size: 20px;
+  font-weight: 500;
+}
+.number-info {
+  color: rgb(172, 172, 172);
+  font-weight: 100;
+}
+.number-info span {
+  font-size: 50px;
+  color: black;
+}
