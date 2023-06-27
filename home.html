@@ -121,12 +121,11 @@
             <span id="delete-post-titel"></span>
           </h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
+          <input type="text" id="delete-post-id-input" value="">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button id="post-modal-submit-btn" type="button" class="btn btn-primary" onclick="confirmDelete()">Delete</button>
+          <button id="post-modal-submit-btn" type="button" class="btn btn-danger" onclick="confirmPostDelete()">Yes, Delete</button>
         </div>
       </div>
     </div>

@@ -445,19 +445,25 @@ function deletePostBtnClicked(postObjekt)
 {
   let post = JSON.parse(decodeURIComponent(postObjekt))
   console.log(post)
-  alert("deiet")
-  return
-  document.getElementById("post-id-input").value = post.id
-  let postTitel = ""
-  if(post.titel != null){
-    postTitel = post.titel
-  }
-  document.getElementById("post-modal-submit-btn").innerHTML = "Update"
-  document.getElementById("post-titel-input").value = postTitel
-  document.getElementById("post-body-input").value = post.body
-  document.getElementById("post-modal-titel").innerHTML = "Edit Post"
-  let postModal = new bootstrap.Modal(document.getElementById("create-post-modal"), {})
+  document.getElementById("delete-post-id-input").value = post.id
+  let postModal = new bootstrap.Modal(document.getElementById("delete-post-modal"), {})
   postModal.toggle()
 }
 
-function confirmDelete()
+function confirmPostDelete()
+{
+  const postId = document.getElementById("delete-post-id-input").value
+  alert(postId)
+  return
+  axios.post(url, params)
+  .then((response) => {
+    localStorage.setItem("token", response.data.token)
+    localStorage.setItem("user", JSON.stringify(response.data.user))
+      
+    const modal = document.getElementById("login-modal")
+    const modalInstance = bootstrap.Modal.getInstance(modal)
+    modalInstance.hide()
+    showAlert("Logged in successfully", "success")
+    setupUI()
+  })
+}
