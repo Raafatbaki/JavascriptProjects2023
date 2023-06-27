@@ -473,3 +473,18 @@ function confirmPostDelete()
     showAlert(errorMessage, "danger")
   })
 }
+
+getUser()
+function getUser()
+{
+  const id = 1
+  axios.get(`${baseurl}/users/${id}`)
+  .then((response) => {
+    const user = response.data.data
+    document.getElementById("main-info-email").innerHTML = user.email
+    document.getElementById("main-info-name").innerHTML = user.name
+    document.getElementById("main-info-username").innerHTML = user.username
+    document.getElementById("posts-count").innerHTML = user.posts_count
+    document.getElementById("comments-count").innerHTML = user.comments_count
+  })
+}
