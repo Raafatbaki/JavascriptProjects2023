@@ -46,6 +46,7 @@ function getPost(relode = true, page = 1)
       {
         editBtnContent = 
         `
+          <button class='btn btn-danger' style='margin-left: 5px; float: right' onclick="deletePostBtnClicked('${encodeURIComponent(JSON.stringify(post))}')">delete</button>
           ​<button class='btn btn-secondary' style='float: right' onclick="editPostBtnClicked('${encodeURIComponent(JSON.stringify(post))}')">edit</button>
         `
       }
@@ -439,3 +440,24 @@ function addBtnClicked()
   let postModal = new bootstrap.Modal(document.getElementById("create-post-modal"), {})
   postModal.toggle()
 }
+
+function deletePostBtnClicked(postObjekt)
+{
+  let post = JSON.parse(decodeURIComponent(postObjekt))
+  console.log(post)
+  alert("deiet")
+  return
+  document.getElementById("post-id-input").value = post.id
+  let postTitel = ""
+  if(post.titel != null){
+    postTitel = post.titel
+  }
+  document.getElementById("post-modal-submit-btn").innerHTML = "Update"
+  document.getElementById("post-titel-input").value = postTitel
+  document.getElementById("post-body-input").value = post.body
+  document.getElementById("post-modal-titel").innerHTML = "Edit Post"
+  let postModal = new bootstrap.Modal(document.getElementById("create-post-modal"), {})
+  postModal.toggle()
+}
+
+function confirmDelete()
