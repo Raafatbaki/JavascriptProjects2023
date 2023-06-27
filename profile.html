@@ -159,7 +159,7 @@
                   <a class="nav-link active" aria-current="page" href="home.html">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="profile.html">Profile</a>
+                  <a class="nav-link" onclick="profileClicked()" style="cursor: pointer;">Profile</a>
                 </li>
               </ul>
               <!-- NON-LOGGED IN USER -->
@@ -227,11 +227,11 @@
         <!-- // MAIN INFO // -->
         <!-- POST TITEL -->
         <div class="row mt-5">
-          <h1>Raafat's Posts</h1>
+          <h1> <span id="name-posts">Raafat's</span> Posts</h1>
         </div>
         <!-- // POST TITEL // -->
         <!-- POSTS -->
-        <div class="row">
+        <div class="row" id="user-posts">
           <!-- POST -->
           <div class="card shadow">
             <div class="card-header">
@@ -272,3 +272,4 @@
   <!-- JAVA SCRIPT -->
   <script src="script.js"></script>
 </body>
+</html>
