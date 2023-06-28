@@ -20,6 +20,7 @@ window.addEventListener("scroll", function(){
 
 function getPost(relode = true, page = 1)
 {
+  toggleLoader(true)
   axios.get(`${baseurl}/posts?limit=8&page=${page}`)
   .then(function (response) {
     // handle success
@@ -104,8 +105,10 @@ function getPost(relode = true, page = 1)
     }
   })
   .catch(function (error) {
-    // handle error
-    console.log(error);
+    const message = error.response.data.message
+    showAlert(message, "danger")
+  }).finally(() => {
+    toggleLoader(false)
   })
 }
 
@@ -118,6 +121,7 @@ function loginBtnClicked()
     "username" : username,
     "password" : password
   }
+  toggleLoader(true)
   axios.post(url, params)
   .then((response) => {
     localStorage.setItem("token", response.data.token)
@@ -128,6 +132,12 @@ function loginBtnClicked()
     modalInstance.hide()
     showAlert("Logged in successfully", "success")
     setupUI()
+  })
+  .catch(function (error) {
+    const message = error.response.data.message
+    showAlert(message, "danger")
+  }).finally(() => {
+    toggleLoader(false)
   })
 }
   
@@ -146,7 +156,7 @@ function registerBtnClicked()
   formData.append("image", image)
 
   const url = `${baseurl}/register`
-
+  toggleLoader(true)
   axios.post(url, formData)
   .then((response) => {
     console.log(response.data)
@@ -159,9 +169,12 @@ function registerBtnClicked()
 
     showAlert("New User Registered successfully", "success")
     setupUI()
-  }).catch((error) => {
+  })
+  .catch(function (error) {
     const message = error.response.data.message
     showAlert(message, "danger")
+  }).finally(() => {
+    toggleLoader(false)
   })
 }
 
@@ -247,6 +260,7 @@ function createNewPostClicked()
     formData.append("_method", "put")
     url = `${baseurl}/posts/${postId}`
   }
+  toggleLoader(true)
   axios.post(url, formData, {
     headers : headers
   })
@@ -257,9 +271,11 @@ function createNewPostClicked()
     showAlert("New Post Has Been Created", "success")
     getPost()
   })
-  .catch((error) => {
+  .catch(function (error) {
     const message = error.response.data.message
     showAlert(message, "danger")
+  }).finally(() => {
+    toggleLoader(false)
   })
 }
 
@@ -285,6 +301,7 @@ const id = urlParams.get("postId")
 getDetailsPost()
 function getDetailsPost()
 {
+  toggleLoader(true)
   axios.get(`${baseurl}/posts/${id}`)
   .then((response) => {
     //console.log(response.data)
@@ -381,9 +398,11 @@ function getDetailsPost()
 
   })
   .catch(function (error) {
-  // handle error
-  console.log(error);
-})
+    const message = error.response.data.message
+    showAlert(message, "danger")
+  }).finally(() => {
+    toggleLoader(false)
+  })
 }
 
 function createCommentClicked() 
@@ -394,7 +413,7 @@ function createCommentClicked()
   }
   let token = localStorage.getItem("token")
   let url = `${baseurl}/posts/${id}/comments`
-
+  toggleLoader(true)
   axios.post(url, params, {
     headers: {
       "Authorization": `Bearer ${token}`
@@ -404,9 +423,11 @@ function createCommentClicked()
     showAlert("The Comment has been created successfully", "success")
     getDetailsPost()
   })
-  .catch((error) => {
-    const errorMessage = error.response.data.message
-    showAlert(errorMessage, "danger")
+  .catch(function (error) {
+    const message = error.response.data.message
+    showAlert(message, "danger")
+  }).finally(() => {
+    toggleLoader(false)
   })
 }
 
@@ -456,7 +477,7 @@ function confirmPostDelete()
   const postId = document.getElementById("delete-post-id-input").value
   const url = `${baseurl}/posts/${postId}`
   let token = localStorage.getItem("token")
-
+  toggleLoader(true)
   axios.delete(url, {
     headers: {
       "Authorization": `Bearer ${token}`
@@ -469,9 +490,11 @@ function confirmPostDelete()
     showAlert("The Post Has Been Deleted Successfully", "success")
     getPost()
   })
-  .catch((error) => {
-    const errorMessage = error.response.data.message
-    showAlert(errorMessage, "danger")
+  .catch(function (error) {
+    const message = error.response.data.message
+    showAlert(message, "danger")
+  }).finally(() => {
+    toggleLoader(false)
   })
 }
 
@@ -479,6 +502,7 @@ getUser()
 function getUser()
 {
   const id = getCurrentUserId()
+  toggleLoader(true)
   axios.get(`${baseurl}/users/${id}`)
   .then((response) => {
     const user = response.data.data
@@ -490,12 +514,19 @@ function getUser()
     document.getElementById("header-image").src = user.profile_image
     document.getElementById("name-posts").innerHTML = `${user.username}'s`
   })
+  .catch(function (error) {
+    const message = error.response.data.message
+    showAlert(message, "danger")
+  }).finally(() => {
+    toggleLoader(false)
+  })
 }
 
 getPosts()
 function getPosts()
 {
   const id = getCurrentUserId()
+  toggleLoader(true)
   axios.get(`${baseurl}/users/${id}/posts`)
   .then(function (response) {
     // handle success
@@ -573,8 +604,10 @@ function getPosts()
     }
   })
   .catch(function (error) {
-    // handle error
-    console.log(error);
+    const message = error.response.data.message
+    showAlert(message, "danger")
+  }).finally(() => {
+    toggleLoader(false)
   })
 }
 
@@ -595,4 +628,14 @@ function profileClicked()
   const user = getCurrentUser()
   const userId = user.id
   window.location = `profile.html?userid=${userId}`
+}
+
+function toggleLoader(show = true)
+{
+    if(show)
+    {
+        document.getElementById("loader").style.visibility = 'visible'
+    }else {
+        document.getElementById("loader").style.visibility = 'hidden'
+    }
 }
