@@ -3,18 +3,18 @@ setupUI()
 getPost()
 
 // ====INFINITE SCROLL==== //
-// let currentPage = 1
-// let lastPage = 1 
+let currentPage = 1
+let lastPage = 1 
 
-// window.addEventListener("scroll", function(){
+window.addEventListener("scroll", function(){
 
-//   const endOfPage = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
-//   if(endOfPage && currentPage < lastPage)
-//   {
-//     currentPage = currentPage + 1
-//     getPost(false, currentPage)
-//   }
-// });
+  const endOfPage = window.innerHeight + window.pageYOffset >= document.body.scrollHeight;
+  if(endOfPage && currentPage < lastPage)
+  {
+    currentPage = currentPage + 1
+    getPost(false, currentPage)
+  }
+});
 // ====// INFINITE SCROLL //==== //
 
 
