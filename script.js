@@ -224,7 +224,7 @@ function setupUI()
     loginDiv.style.setProperty("display", "flex", "important")
     logoutDiv.style.setProperty("display", "none", "important")
   }else {
-    addBtn.style.setProperty("display", "block", "important")
+    addBtn.style.setProperty("display", "flex", "important")
     loginDiv.style.setProperty("display", "none", "important")
     logoutDiv.style.setProperty("display", "flex", "important")
     const user = getCurrentUser()

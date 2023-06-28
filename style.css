@@ -16,6 +16,10 @@ body {
   cursor: pointer;
   border-radius: 100px;
   text-align: center;
+
+  justify-content: center;
+  display: flex;
+  align-items: end;
 }
 #post-body-input {
   width: 100%;
